@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une etudiant</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="page-wrapper">
+    <div class="content container-fluid">
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col-sm-12">
+            <div class="page-sub-header">
+              <h3 class="page-title">Ajouter un etudiant</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#">Student</a>
+                </li>
+                <li class="breadcrumb-item active">Ajouter un etudiant</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card comman-shadow">
+            <div class="card-body">
+              <form th:action="@{/admin/saveEtudiant}" method="post" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-12">
+                    <h5 class="form-title student-info">
+                      Information Etudiant
+                      <span
+                      ><a href="javascript:;"
+                      ><i class="feather-more-vertical"></i></a
+                      ></span>
+                    </h5>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="numeroMatricule">Numero matricule<span class="login-danger">*</span></label>
+                      <input
+                              id="numeroMatricule"
+                              name="numeroMatricule"
+                              class="form-control"
+                              type="text"
+                              placeholder="Enter Register Number"
+                              th:value="${etudiant.numeroMatricule}"
+                      />
+                      <span class="text-danger" th:errors="${etudiant.numeroMatricule}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="nom">Nom<span class="login-danger">*</span></label>
+                      <input
+                              id="nom"
+                              name="nom"
+                              class="form-control"
+                              type="text"
+                              placeholder="Entrer un nom"
+                              th:value="${etudiant.nom}"
+                      />
+                      <span class="text-danger" th:errors="${etudiant.nom}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="prenom">Prenom<span class="login-danger">*</span></label>
+                      <input
+                              id="prenom"
+                              name="prenom"
+                              class="form-control"
+                              type="text"
+                              placeholder="Entrer un prenom"
+                              th:value="${etudiant.prenom}"
+                      />
+                      <span class="text-danger" th:errors="${etudiant.prenom}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="dateDeNaisance">Date de naissance<span class="login-danger">*</span></label>
+                      <input
+                              id="dateDeNaisance"
+                              name="dateDeNaisance"
+                              class="form-control"
+                              type="date"
+                              th:value="${etudiant.dateDeNaisance}"
+                      />
+                      <span class="text-danger" th:errors="${etudiant.dateDeNaisance}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="adresse">Adresse </label>
+                      <input
+                              id="adresse"
+                              name="adresse"
+                              class="form-control"
+                              type="text"
+                              placeholder="Entrer une Adresse"
+                              th:value="${etudiant.adresse}"
+                      />
+                      <span class="text-danger" th:errors="${etudiant.adresse}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="genre">Sexe <span class="login-danger">*</span></label>
+                      <select id="genre" name="genre" class="form-control select" th:value="${etudiant.genre}">
+                        <option value="" disabled selected>Selectionner un sexe</option>
+                        <option th:each="g:${genre}" th:text="${#strings.capitalize(g.name())}"></option>
+                      </select>
+                      <span class="text-danger" th:errors="${etudiant.genre}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="numeroDeTelephone">Telephone </label>
+                      <input
+                              id="numeroDeTelephone"
+                              name="numeroDeTelephone"
+                              class="form-control"
+                              type="text"
+                              placeholder="Enter Phone Number"
+                              th:value="${etudiant.numeroDeTelephone}"
+                      />
+                      <span class="text-danger" th:errors="${etudiant.numeroDeTelephone}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="email">E-Mail <span class="login-danger">*</span></label>
+                      <input
+                              id="email"
+                              name="email"
+                              class="form-control"
+                              type="email"
+                              placeholder="Entrer un email"
+                              th:value="${etudiant.email}"
+                      />
+                      <span class="text-danger" th:errors="${etudiant.email}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="parentName">Nom du parent<span class="login-danger">*</span></label>
+                      <input
+                              id="parentName"
+                              name="parentName"
+                              class="form-control"
+                              type="text"
+                              placeholder="Entrer le nom du parent"
+                              th:value="${etudiant.parentName}"
+                      />
+                      <span class="text-danger" th:errors="${etudiant.parentName}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="telephoneParent">Telephone du parent </label>
+                      <input
+                              id="telephoneParent"
+                              name="telephoneParent"
+                              class="form-control"
+                              type="text"
+                              placeholder="Entrer le numero de telephone du parent"
+                              th:value="${etudiant.telephoneParent}"
+                      />
+                      <span class="text-danger" th:errors="${etudiant.telephoneParent}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label>Sélectionner une image :</label>
+                      <input type="file" class="form-control-file" name="file" accept="image/**" required>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="student-submit">
+                      <button type="submit" class="btn btn-primary">
+                        Ajouter
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

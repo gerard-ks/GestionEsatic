@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier Attribution enseignant</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">Modifier l'attribution à un enseignant</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Enseignant</a>
+                                </li>
+                                <li class="breadcrumb-item active"> Modifier l'attribution à un enseignant</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card comman-shadow">
+                        <div class="card-body">
+                            <form th:action="@{/admin/saveAtt}" method="post">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="form-title student-info">
+                                            Information Enseignant
+                                            <span
+                                            ><a href="javascript:;"
+                                            ><i class="feather-more-vertical"></i></a
+                                            ></span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label for="id" class="form-label fw-bold fs-4">Id-<span th:text="${enseignantEcueAnnee.id}" class="fw-bold fs-4"></span></label>
+                                            <input type="hidden" name="id" id="id" class="form-control" th:value="${enseignantEcueAnnee.id}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label for="enseignant">Id<span class="login-danger">*</span></label>
+                                            <input
+                                                    id="enseignant"
+                                                    name="enseignant"
+                                                    class="form-control"
+                                                    type="text"
+                                                    th:value="${enseignantEcueAnnee.enseignant.id}"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <select class="form-control select" th:field="*{enseignantEcueAnnee.ecue.id}" required>
+                                                <option value="" disabled selected>Selectionner une ecue</option>
+                                                <option th:each="li:${listEcue}" th:value="${li.id}" th:text="${li.intitule}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <select class="form-control select" th:field="*{enseignantEcueAnnee.anneeAcademique.id}"  required>
+                                                <option value="" disabled selected>Selectionner une annee academique</option>
+                                                <option th:each="la:${listAnneeAcademique}" th:value="${la.id}" th:text="${la.description}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="student-submit">
+                                            <button type="submit" class="btn btn-primary">
+                                                Modifier
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

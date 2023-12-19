@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template-admin.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter annee academique</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="page-wrapper">
+    <div class="content container-fluid">
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col-sm-12">
+            <div class="page-sub-header">
+              <h3 class="page-title">Ajouter une annee academique</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#">Student</a>
+                </li>
+                <li class="breadcrumb-item active">Ajouter une anne academique</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card comman-shadow">
+            <div class="card-body">
+              <form th:action="@{/admin/saveSchoolYear}" method="post">
+                <div class="row">
+                  <div class="col-12">
+                    <h5 class="form-title student-info">
+                      Information de l'annee academique
+                      <span
+                      ><a href="javascript:;"
+                      ><i class="feather-more-vertical"></i></a
+                      ></span>
+                    </h5>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="description">Description<span class="login-danger">*</span></label>
+                      <input
+                              id="description"
+                              name="description"
+                              class="form-control"
+                              type="text"
+                              placeholder="Enter School Year"
+                              th:value="${schoolYear.description}"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="dateDebut">Date de debut<span class="login-danger">*</span></label>
+                      <input
+                              id="dateDebut"
+                              name="dateDebut"
+                              class="form-control"
+                              type="date"
+                              placeholder="Enter Beginning Year"
+                              th:value="${schoolYear.dateDebut}"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="dateDebut">Date de debut<span class="login-danger">*</span></label>
+                      <input
+                              id="dateFin"
+                              name="dateFin"
+                              class="form-control"
+                              type="date"
+                              placeholder="Enter Year Ending"
+                              th:value="${schoolYear.dateFin}"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="student-submit">
+                      <button type="submit" class="btn btn-primary">
+                        Ajouter
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un enseignant</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="page-wrapper">
+    <div class="content container-fluid">
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col-sm-12">
+            <div class="page-sub-header">
+              <h3 class="page-title">Modifier un enseignant</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#">Enseignant</a>
+                </li>
+                <li class="breadcrumb-item active">Modifier un enseignant</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card comman-shadow">
+            <div class="card-body">
+              <form th:action="@{/admin/saveEnseignant}" method="post">
+                <div class="row">
+                  <div class="col-12">
+                    <h5 class="form-title student-info">
+                      Information Enseignant
+                      <span
+                      ><a href="javascript:;"
+                      ><i class="feather-more-vertical"></i></a
+                      ></span>
+                    </h5>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group local-forms">
+                      <label for="id" class="form-label fw-bold fs-4">Id-<span th:text="${enseignant.id}" class="fw-bold fs-4"></span></label>
+                      <input type="hidden" name="id" id="id" class="form-control" th:value="${enseignant.id}">
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="nom">Nom<span class="login-danger">*</span></label>
+                      <input
+                              id="nom"
+                              name="nom"
+                              class="form-control"
+                              type="text"
+                              placeholder="Entrer un nom"
+                              th:value="${enseignant.nom}"
+                      />
+                      <span class="text-danger" th:errors="${enseignant.nom}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="prenom">Prenom<span class="login-danger">*</span></label>
+                      <input
+                              id="prenom"
+                              name="prenom"
+                              class="form-control"
+                              type="text"
+                              placeholder="Entrer un prenom"
+                              th:value="${enseignant.prenom}"
+                      />
+                      <span class="text-danger" th:errors="${enseignant.prenom}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="genre">Sexe <span class="login-danger">*</span></label>
+                      <select id="genre" name="genre" class="form-control select" th:value="${enseignant.genre}">
+                        <option value="" disabled selected>Selectionner un sexe</option>
+                        <option th:each="g:${genre}" th:text="${#strings.capitalize(g.name())}"></option>
+                      </select>
+                      <span class="text-danger" th:errors="${enseignant.genre}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="telephone">Telephone </label>
+                      <input
+                              id="telephone"
+                              name="telephone"
+                              class="form-control"
+                              type="text"
+                              placeholder="Enter Phone Number"
+                              th:value="${enseignant.telephone}"
+                      />
+                      <span class="text-danger" th:errors="${enseignant.telephone}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="email">E-Mail <span class="login-danger">*</span></label>
+                      <input
+                              id="email"
+                              name="email"
+                              class="form-control"
+                              type="email"
+                              placeholder="Entrer un email"
+                              th:value="${enseignant.email}"
+                      />
+                      <span class="text-danger" th:errors="${enseignant.email}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="specialite">Specialite<span class="login-danger">*</span></label>
+                      <input
+                              id="specialite"
+                              name="specialite"
+                              class="form-control"
+                              type="text"
+                              placeholder="Entrer la specialite"
+                              th:value="${enseignant.specialite}"
+                      />
+                      <span class="text-danger" th:errors="${enseignant.specialite}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="form-group">
+                      <label for="grade">Grade</label>
+                      <input
+                              id="grade"
+                              name="grade"
+                              class="form-control"
+                              type="text"
+                              placeholder="Entrer le grade"
+                              th:value="${enseignant.grade}"
+                      />
+                      <span class="text-danger" th:errors="${enseignant.grade}"></span>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="student-submit">
+                      <button type="submit" class="btn btn-primary">
+                        Ajouter
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

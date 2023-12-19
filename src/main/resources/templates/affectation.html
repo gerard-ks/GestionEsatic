@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Affectation des enseignants</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">Affectation des enseignants</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Enseignants</a>
+                                </li>
+                                <li class="breadcrumb-item active">Affectation des enseignants</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card comman-shadow">
+                        <div class="card-body">
+                            <form th:action="@{/admin/affectation}" method="post">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="form-title student-info">
+                                             Information
+                                            <span
+                                            ><a href="javascript:;"
+                                            ><i class="feather-more-vertical"></i></a
+                                            ></span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <label>Identifiant<span class="login-danger">*</span></label>
+                                           <input
+                                                   id="enseignant"
+                                                   name="enseignant"
+                                                    class="form-control-plaintext"
+                                                    type="text"
+                                                    th:value="${affecte.enseignant.id}"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <label>Annee academique <span class="login-danger">*</span></label>
+                                            <select class="form-control select" th:field="*{affecte.anneeAcademique}" required>
+                                                <th:block th:each="an : ${listAnneeAcademique}">
+                                                                <option th:text="${an.description}" th:value="${an.id}"></option>
+                                                </th:block>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <label>Classe <span class="login-danger">*</span></label>
+                                            <select class="form-control select" th:field="*{affecte.classe}" required>
+                                                <th:block th:each="classe : ${listClasse}">
+                                                    <option th:text="${classe.nom}" th:value="${classe.id}"></option>
+                                                </th:block>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="student-submit">
+                                            <button type="submit" class="btn btn-primary">
+                                                Affecter
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

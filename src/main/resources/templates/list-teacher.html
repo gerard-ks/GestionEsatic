@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Enseignants</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">Enseignants</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Enseignant</a>
+                                </li>
+                                <li class="breadcrumb-item active">Enseignants</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table comman-shadow">
+                        <div class="card-body">
+                            <div>
+                                <table
+                                        class="table border-0 star-student table-hover table-center mb-0 table-striped"
+                                >
+                                    <thead class="student-thread">
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nom</th>
+                                            <th>Prenom</th>
+                                            <th>Sexe</th>
+                                            <th>Numero de telephone</th>
+                                            <th>Email</th>
+                                            <th>Specialite</th>
+                                            <th>Grade</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="e:${enseignants}">
+                                            <td th:text="${e.id}"></td>
+                                            <td th:text="${e.nom}"></td>
+                                            <td th:text="${e.prenom}"></td>
+                                            <td th:text="${e.genre}"></td>
+                                            <td th:text="${e.telephone}"></td>
+                                            <td th:text="${e.email}"></td>
+                                            <td th:text="${e.specialite}"></td>
+                                            <td th:text="${e.grade}"></td>
+                                            <td>
+                                                <div class="dropdown d-inline-block">
+                                                    <button
+                                                            class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                                                            role="button"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false"
+                                                    >
+                                                        Options
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <a th:href="@{/admin/attEnseignant(id=${e.id})}" class="dropdown-item"
+                                                        >Attributioon</a
+                                                        >
+                                                        <a th:href="@{/admin/affectEnseignant(id=${e.id})}" class="dropdown-item">Affectation</a>
+                                                        <a th:href="@{/admin/ediTeacher(id=${e.id})}" class="dropdown-item"
+                                                        >Modifier</a
+                                                        >
+                                                        <a th:href="@{/admin/addAccountTeacher(id=${e.id})}">Creer un compte utilisateur</a>
+                                                    </ul>
+                                                </div>
+                                                <!-- Lien avec un attribut data-toggle et data-target pour activer le modal -->
+                                                <a href="#" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                                                    <i class="bi bi-x-circle"></i>
+                                                </a>
+
+                                                <!-- Modal de confirmation -->
+                                                <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                                                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Êtes-vous sûr de vouloir supprimer cet enseignant ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <!-- Lien de suppression -->
+                                                                <a th:href="@{/admin/deleteTeacher(id=${e.id})}" class="btn btn-danger">Supprimer</a>
+
+                                                                <!-- Bouton de fermeture du modal -->
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

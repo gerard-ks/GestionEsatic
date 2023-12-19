@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Page de connexion</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/plugins/feather/feather.css">
+    <link rel="stylesheet" href="/plugins/icons/flags/flags.css">
+    <link rel="stylesheet" href="/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- Afficher un message d'erreur si présent -->
+<div th:if="${param.error}">
+    <div class="alert alert-danger alert-dismissible fade show">
+        <i class="bi-exclamation-octagon-fill"></i>
+        <strong class="mx-2">Error!</strong> A problem has been occurred while submitting your data.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+</div>
+
+
+<div class="main-wrapper login-body">
+    <div class="login-wrapper">
+        <div class="container">
+            <div class="loginbox">
+                <div class="login-left">
+                    <!--<img class="img-fluid" src="/img/img-esatic.png" alt="Logo">-->
+                </div>
+                <div class="login-right">
+                    <div class="login-right-wrap">
+                        <h1>Bienvenue à l'Esatic</h1>
+                        <br>
+                        <form th:action="@{/login}" method="post">
+                            <div class="form-group">
+                                <label for="username">Nom d'utilisateur <span class="login-danger">*</span></label>
+                                <input id="username" name="username" class="form-control" type="text" required>
+                                <span class="profile-views"><i class="fas fa-user-circle"></i></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mot de passe <span class="login-danger">*</span></label>
+                                <input id="password" name="password" class="form-control pass-input" type="password" required>
+                                <span class="profile-views feather-eye toggle-password"></span>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Se connecter</button>
+                            </div>
+                        </form>
+
+                        <div class="login-or">
+                            <span class="or-line"></span>
+                            <span class="span-or"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/jquery-3.6.0.min.js"></script>
+<script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
+<script src="/js/feather.min.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

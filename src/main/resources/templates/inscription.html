@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription des etudiants</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">Inscription des etudiants</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Etudiant</a>
+                                </li>
+                                <li class="breadcrumb-item active">Inscription des etudiants</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card comman-shadow">
+                        <div class="card-body">
+                            <form th:action="@{/admin/inscrire}" method="post">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="form-title student-info">
+                                             Information
+                                            <span
+                                            ><a href="javascript:;"
+                                            ><i class="feather-more-vertical"></i></a
+                                            ></span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <label>Identifiant<span class="login-danger">*</span></label>
+                                           <input
+                                                    name="etudiant"
+                                                    class="form-control-plaintext"
+                                                    type="text"
+                                                    th:value="${inscription.etudiant.id}"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <label>Annee academique <span class="login-danger">*</span></label>
+                                            <select class="form-control select" th:field="*{inscription.anneeAcademique}" required>
+                                                <th:block th:each="an : ${anneeAcademiqueList}">
+                                                                <option th:text="${an.description}" th:value="${an.id}"></option>
+                                                </th:block>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <label>Filiere <span class="login-danger">*</span></label>
+                                            <select class="form-control select" th:field="*{inscription.niveau}" required>
+                                                <th:block th:each="niv : ${niveauList}">
+                                                    <option th:text="${niv.nom}" th:value="${niv.id}"></option>
+                                                </th:block>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <label>Classe <span class="login-danger">*</span></label>
+                                            <select class="form-control select" th:field="*{inscription.classe}" required>
+                                                <th:block th:each="cla : ${classeList}">
+                                                    <option th:text="${cla.nom}" th:value="${cla.id}"></option>
+                                                </th:block>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="student-submit">
+                                            <button type="submit" class="btn btn-primary">
+                                                Inscrire
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

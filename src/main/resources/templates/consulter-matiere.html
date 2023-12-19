@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="dashboard-etudiant.html">
+<head>
+    <meta charset="UTF-8">
+    <title>MATIERE</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">MATIERE </h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                                <li class="breadcrumb-item active">Matiere</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                    <div class="card bg-comman w-100">
+                        <div class="card-body">
+                            <div class="db-widgets d-flex justify-content-between align-items-center">
+                                <div class="db-info">
+                                    <table
+                                            class="table border-0 star-student table-hover table-center mb-0 table-striped"
+                                    >
+                                        <thead class="student-thread">
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nom</th>
+                                           <!-- <th>Actions</th>-->
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="cl:${listeecue}">
+                                            <td th:text="${cl.id}"></td>
+                                            <td th:text="${cl.intitule}"></td>
+                                            <!--<td> <a th:href="@{/enseignant/voirEnseignant(ecue=${cl.id})}">voir enseignant</a></td>-->
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

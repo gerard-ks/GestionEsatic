@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Etudiants</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">Etudiants</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Etudiant</a>
+                                </li>
+                                <li class="breadcrumb-item active">Etudiants</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table comman-shadow">
+                        <div class="card-body">
+                            <div>
+                                <table
+                                        class="table border-0 star-student table-hover table-center mb-0 table-striped"
+                                >
+                                    <thead class="student-thread">
+                                        <tr>
+                                            <th>Numero matricule</th>
+                                            <th>Nom</th>
+                                            <th>Prenom</th>
+                                            <th>Adresse</th>
+                                            <th>Sexe</th>
+                                            <th>Numero de telephone</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="e:${list}">
+                                            <td th:text="${e.numeroMatricule}"></td>
+                                            <td th:text="${e.nom}"></td>
+                                            <td th:text="${e.prenom}"></td>
+                                            <td th:text="${e.adresse}"></td>
+                                            <td th:text="${e.genre}"></td>
+                                            <td th:text="${e.numeroDeTelephone}"></td>
+                                            <td>
+                                                <div class="dropdown d-inline-block">
+                                                    <button
+                                                            class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                                                            role="button"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false"
+                                                    >
+                                                        Options
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <a th:href="@{/admin/registration(id=${e.id})}" class="dropdown-item"
+                                                        >Inscrire</a
+                                                        >
+                                                        <a th:href="@{/admin/profil(id=${e.id})}" class="dropdown-item">Profil</a>
+                                                        <a th:href="@{/admin/editStudent(id=${e.id})}" class="dropdown-item"
+                                                        >Modifier</a
+                                                        >
+                                                        <a th:href="@{/admin/addAccountStudent(id=${e.id})}">compte utilisateur</a>
+                                                    </ul>
+                                                </div>
+                                                <!-- Lien avec un attribut data-toggle et data-target pour activer le modal -->
+                                                <a
+                                                        href="#"
+                                                        class="btn btn-outline-danger"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#confirmationModal"
+                                                >
+                                                    Supprimer
+                                                </a>
+
+                                                <!-- Modal de confirmation -->
+                                                <div
+                                                        class="modal fade"
+                                                        id="confirmationModal"
+                                                        tabindex="-1"
+                                                        role="dialog"
+                                                        aria-labelledby="confirmationModalLabel"
+                                                        aria-hidden="true"
+                                                >
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                                                                <button
+                                                                        type="button"
+                                                                        class="close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"
+                                                                >
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Êtes-vous sûr de vouloir supprimer cet etudiant ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <!-- Lien de suppression -->
+                                                                <a
+                                                                        th:href="@{/admin/deleteStudent(id=${e.id})}"
+                                                                        class="btn btn-outline-warning"
+                                                                >Supprimer</a
+                                                                >
+                                                                <!-- Bouton de fermeture du modal -->
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                                    Annuler
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

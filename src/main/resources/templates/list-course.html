@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template-admin.html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Filiere</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">Filiere</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Filiere</a>
+                                </li>
+                                <li class="breadcrumb-item active">Filieres</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table comman-shadow">
+                        <div class="card-body">
+                            <div>
+                                <table
+                                        class="table border-0 star-student table-hover table-center mb-0 table-striped"
+                                >
+                                    <thead class="student-thread">
+                                    <tr>
+
+                                        <th>Description</th>
+                                        <th>Sigle</th>
+                                        <th>Grade</th>
+                                        <th>Duree de la formation</th>
+                                        <th>Nombre de semestres</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="f:${filieres}">
+
+                                        <td th:text="${f.description}"></td>
+                                        <td th:text="${f.sigle}"></td>
+                                        <td th:text="${f.grade}"></td>
+                                        <td th:text="${f.dureeFormation}"></td>
+                                        <td th:text="${f.semestre}"></td>
+
+                                        <td>
+                                            <a th:href="@{/admin/editCourse(id=${f.id})}" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></a>
+                                            <!-- Lien avec un attribut data-toggle et data-target pour activer le modal -->
+                                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+
+                                            <!-- Modal de confirmation -->
+                                            <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Êtes-vous sûr de vouloir supprimer cette Filiere ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <!-- Lien de suppression -->
+                                                            <a th:href="@{/admin/deleteCourse(id=${f.id})}" class="btn btn-outline-warning">Supprimer</a>
+                                                            <!-- Bouton de fermeture du modal -->
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

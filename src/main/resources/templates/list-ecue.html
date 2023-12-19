@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste ECUE</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">ECUE</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">ECUE</a>
+                                </li>
+                                <li class="breadcrumb-item active">ECUES</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table comman-shadow">
+                        <div class="card-body">
+
+                               <div class="student-group-form">
+                                    <form th:action="@{/admin/searchUe}" method="get">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="form-group">
+                                                    <select class="form-control select" name="ue" required>
+                                                        <option value="" disabled selected>Selectionner une ue</option>
+                                                        <option th:each="g:${ues}" th:value="${g.id}" th:text="${g.intitule}"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="search-student-btn">
+                                                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div>
+                                <table
+                                        class="table border-0 star-student table-hover table-center mb-0 table-striped"
+                                >
+                                    <thead class="student-thread">
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Initule</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="e:${listeecues}">
+                                        <td th:text="${e.codeecue}"></td>
+                                        <td th:text="${e.intitule}"></td>
+                                        <td>
+                                            <a class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Ajouter une Filiere</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Filiere</a></li>
+                            <li class="breadcrumb-item active">Ajouter une filiere</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form th:action="@{/admin/saveCourse}" method="post">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="form-title"><span>Details de la filiere</span></h5>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Description <span class="login-danger">*</span></label>
+                                            <input name="description" type="text" class="form-control" th:value="${filiere.description}">
+                                            <span class="text-danger" th:errors="${filiere.description}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Sigle <span class="login-danger">*</span></label>
+                                            <input name="sigle" type="text" class="form-control" th:value="${filiere.sigle}">
+                                            <span class="text-danger" th:errors="${filiere.sigle}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Grade <span class="login-danger">*</span></label>
+                                            <input name="grade" type="text" class="form-control" th:value="${filiere.grade}">
+                                           <span class="text-danger" th:errors="${filiere.grade}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Duree de la formation <span class="login-danger">*</span></label>
+                                            <input name="dureeFormation" type="number" class="form-control" th:value="${filiere.dureeFormation}">
+                                            <span class="text-danger" th:errors="${filiere.dureeFormation}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Nombre de semetres <span class="login-danger">*</span></label>
+                                            <input name="semestre" type="number" class="form-control" th:value="${filiere.semestre}">
+                                            <span class="text-danger" th:errors="${filiere.semestre}"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <select class="form-control select" multiple th:field="*{filiere.niveaux}" required>
+                                                <option value="" disabled selected>Selectionner un ou plusieurs niveau(x)</option>
+                                                <option th:each="g:${listniveaux}" th:value="${g.id}" th:text="${g.nom}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="student-submit">
+                                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template-admin.html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Annee Academique</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">Annee academique</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">School Year</a>
+                                </li>
+                                <li class="breadcrumb-item active">Annees academiques</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table comman-shadow">
+                        <div class="card-body">
+                            <div
+                                    class="col-auto text-end float-end ms-auto download-grp"
+                            >
+                                <a th:href="@{/admin/addSchoolYear}" class="btn btn-primary"
+                                ><i class="fas fa-plus"></i
+                                ></a>
+                            </div>
+                            <div>
+                                <table
+                                        class="table border-0 star-student table-hover table-center mb-0 table-striped"
+                                >
+                                    <thead class="student-thread">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Description</th>
+                                        <th>Date de debut</th>
+                                        <th>Date de fin</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="a:${academiques}">
+                                        <td th:text="${a.id}"></td>
+                                        <td th:text="${a.description}"></td>
+                                        <td th:text="${a.dateDebut}"></td>
+                                        <td th:text="${a.dateFin}"></td>
+                                        <td>
+                                            <a th:href="@{/admin/editYear(id=${a.id})}" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></a>
+                                            <a th:href="@{/admin/deleteYear(id=${a.id})}" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

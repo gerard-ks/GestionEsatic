@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template-admin.html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Etudiant</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">Etudiant</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Etudiant</a>
+                                </li>
+                                <li class="breadcrumb-item active">Etudiant</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                                <div class="card-body">
+                                    <div class="card mb-3 mx-auto h-100" style="max-width: 540px;">
+                                        <div class="row g-0 h-100">
+                                            <div class="col-md-4 d-flex flex-column justify-content-center align-items-center mr-3" style="background-color: beige">
+                                                <img th:src="@{'/uploads/'+${etudiant.photoEtudiant}}" class="img-fluid rounded-start" alt="photo identite" width="100%" height="auto">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body d-flex flex-column justify-content-center align-items-center mt-5">
+                                                    <h5 class="card-title">CARTE ETUDIANT</h5>
+                                                    <p class="card-text" th:text="${etudiant.numeroMatricule}"></p>
+                                                    <p class="card-text" th:text="${etudiant.nom}"></p>
+                                                    <p class="card-text" th:text="${etudiant.prenom}"></p>
+                                                    <p class="card-text" th:text="${etudiant.dateDeNaisance}"></p>
+                                                    <p class="card-text" th:text="${etudiant.adresse}"></p>
+                                                    <p class="card-text" th:text="${etudiant.genre}"></p>
+                                                    <p class="card-text" th:text="${etudiant.numeroDeTelephone}"></p>
+                                                    <p class="card-text" th:text="${etudiant.email}"></p>
+                                                    <p class="card-text" th:text="${etudiant.parentName}"></p>
+                                                    <p class="card-text" th:text="${etudiant.telephoneParent}"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

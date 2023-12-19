@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Ajouter une UE</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">UE</a></li>
+                            <li class="breadcrumb-item active">Ajouter une UE</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form th:action="@{/admin/saveUe}" method="post">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="form-title"><span>Details de l'UE</span></h5>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Code UE <span class="login-danger">*</span></label>
+                                            <input name="codeue" type="text" class="form-control" th:value="${ue.codeue}">
+                                            <span class="text-danger" th:errors="${ue.codeue}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Intitule <span class="login-danger">*</span></label>
+                                            <input name="intitule" type="text" class="form-control" th:value="${ue.intitule}">
+                                            <span class="text-danger" th:errors="${ue.intitule}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Semestre <span class="login-danger">*</span></label>
+                                            <input name="semestre" type="text" class="form-control" th:value="${ue.semestre}">
+                                            <span class="text-danger" th:errors="${ue.semestre}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>credit ue<span class="login-danger">*</span></label>
+                                            <input name="credit" type="number" class="form-control" th:value="${ue.credit}">
+                                            <span class="text-danger" th:errors="${ue.credit}"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group">
+                                            <select class="form-control select"  th:field="*{ue.niveau}" required>
+                                                <option value="" disabled selected>Selectionner un niveau</option>
+                                                <option th:each="g:${niveaux}" th:value="${g.id}" th:text="${g.nom}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="student-submit">
+                                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

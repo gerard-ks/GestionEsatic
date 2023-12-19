@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template-admin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des NIVEAUX</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">NIVEAU</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">NIVEAU</a>
+                                </li>
+                                <li class="breadcrumb-item active">NIVEAUX</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table comman-shadow">
+                        <div class="card-body">
+
+                                <div class="student-group-form">
+                                    <form th:action="@{/admin/searchFiliere}" method="get">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="form-group">
+                                                    <select class="form-control select" name="filiere" required>
+                                                        <option value="" disabled selected>Selectionner une filiere</option>
+                                                        <option th:each="g:${filieres}" th:value="${g.id}" th:text="${g.description}"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="search-student-btn">
+                                                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div>
+                                <table
+                                        class="table border-0 star-student table-hover table-center mb-0 table-striped"
+                                >
+                                    <thead class="student-thread">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nom</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="e:${list}">
+                                        <td th:text="${e.id}"></td>
+                                        <td th:text="${e.nom}"></td>
+                                        <td>
+                                            <a th:href="@{/admin/editLevel(id=${e.id})}" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></a>
+
+                                            <!-- Lien avec un attribut data-toggle et data-target pour activer le modal -->
+                                            <a href="#" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+
+                                            <!-- Modal de confirmation -->
+                                            <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Êtes-vous sûr de vouloir supprimer cet Niveau ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <!-- Lien de suppression -->
+                                                            <a th:href="@{/admin/deleteLevel(id=${e.id})}" class="btn btn-outline-warning">Supprimer</a>
+                                                            <!-- Bouton de fermeture du modal -->
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
